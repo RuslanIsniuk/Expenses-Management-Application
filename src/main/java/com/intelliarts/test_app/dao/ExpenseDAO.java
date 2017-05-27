@@ -16,5 +16,5 @@ public interface ExpenseDAO {
 
     void delete(int expenseID);
 
-    void deleteUsingDate(Date expenseDate);
+//    void deleteUsingDate(Date expenseDate);
 }
