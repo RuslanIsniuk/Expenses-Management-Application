@@ -24,10 +24,11 @@ public class GetListSortedByDate {
             dateList.sort(dateComparator);
 
             for (Date dateFromList : dateList) {
-                System.out.println(dateFromList.toString() + "\n");
+                System.out.println("\n" + dateFromList.toString() + "\n");
             }
         } catch (NoDatesFoundException ne) {
             logger.info(ne);
+            System.out.println(ERROR_MESSAGE);
         }
     }
 

@@ -13,13 +13,14 @@ public class AddExpense {
 
     public void execute(Date dateFromUser) {
         if (isDateAlreadyExistInDataBase(dateFromUser.getDate())) {
-            Set<Expense> expenseSetFromUser = dateFromUser.getExpenseSet();
-            date.getExpenseSet().addAll(expenseSetFromUser);
+            Expense expenseFromInput = dateFromUser.getExpenseSet().iterator().next();
+            expenseFromInput.setDate(date);
+            date.getExpenseSet().add(expenseFromInput);
             dateDAO.update(date);
-            System.out.println(date.toString());
+            System.out.println("\n" + date.toString());
         } else {
             dateDAO.insert(dateFromUser);
-            System.out.println(dateFromUser.toString());
+            System.out.println("\n" + dateFromUser.toString());
         }
     }
 

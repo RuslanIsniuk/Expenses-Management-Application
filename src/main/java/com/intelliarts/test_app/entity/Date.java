@@ -80,6 +80,7 @@ public class Date {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n"+date);
         for (Expense expenseFromList : expenseSet) {
             stringBuilder.append("\n" + expenseFromList.getExpenseDescription() + " " + expenseFromList.getExpenseAmount() + " " + expenseFromList.getExpenseCurrency());
         }

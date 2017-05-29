@@ -32,7 +32,8 @@ public enum CurrencyType {
     THB("THB"),
     TRY("TRY"),
     USD("USD"),
-    ZAR("ZAR");
+    ZAR("ZAR"),
+    EUR("EUR");
 
     private CurrencyType(String abbreviation) {
         this.abbreviation = abbreviation;

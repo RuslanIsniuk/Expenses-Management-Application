@@ -7,6 +7,7 @@ import com.intelliarts.test_app.entity.CurrencyType;
 import com.intelliarts.test_app.entity.Date;
 import com.intelliarts.test_app.entity.ExchangeRates;
 import com.intelliarts.test_app.entity.Expense;
+import com.intelliarts.test_app.model.exceptions.NoDatesFoundException;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -18,7 +19,8 @@ import java.util.List;
 
 public class TotalExpenses {
     private static final String FIXER_URL = "http://api.fixer.io/latest?base=";
-    private static final Logger logger = Logger.getLogger(HibernateDateDAO.class);
+    private static final Logger logger = Logger.getLogger(TotalExpenses.class);
+    private static final String ERROR_MESSAGE = "No expenses found.";
 
     private DateDAO dateDAO = new HibernateDateDAO();
     private ExchangeRates exchangeRates;
@@ -28,10 +30,19 @@ public class TotalExpenses {
         exchangeRates = getExchangeRates(currencyTypeStr);
         List<Date> dateList = dateDAO.readAll();
 
-        for (Date dateFromList : dateList) {
-            totalAmount = totalAmount.add(getTotalAmountPerDay(dateFromList));
+        try {
+            if (dateList.size() == 0) {
+                throw new NoDatesFoundException(ERROR_MESSAGE);
+            }
+
+            for (Date dateFromList : dateList) {
+                totalAmount = totalAmount.add(getTotalAmountPerDay(dateFromList));
+            }
+            System.out.println("\n" + totalAmount + " " + currencyTypeStr);
+        } catch (NoDatesFoundException e) {
+            logger.info(e);
+            System.out.println(ERROR_MESSAGE);
         }
-        System.out.println(totalAmount + " " + currencyTypeStr);
     }
 
     private ExchangeRates getExchangeRates(String currencyTypeStr) {
