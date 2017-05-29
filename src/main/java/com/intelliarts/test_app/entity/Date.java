@@ -1,5 +1,9 @@
 package com.intelliarts.test_app.entity;
 
+import org.apache.log4j.Logger;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,13 +13,16 @@ import java.util.Set;
 @Entity
 @Table(name = "dates")
 public class Date {
+    private static final Logger logger = Logger.getLogger(Date.class);
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dates_id", unique = true, nullable = false)
     private int dateID;
     @Column(name = "expenses_date", unique = true, nullable = false)
     private java.sql.Date date;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "date")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "date", cascade=CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Expense> expenseSet;
 
     @Override
@@ -58,7 +65,7 @@ public class Date {
 
             this.date = mySQLDate;
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 
@@ -72,12 +79,11 @@ public class Date {
 
     @Override
     public String toString() {
-        String str = "" + date;
-
+        StringBuilder stringBuilder = new StringBuilder();
         for (Expense expenseFromList : expenseSet) {
-            str += "\n" + expenseFromList.getExpenseDescription() + " " + expenseFromList.getExpenseAmount() + " " + expenseFromList.getExpenseCurrency();
+            stringBuilder.append("\n" + expenseFromList.getExpenseDescription() + " " + expenseFromList.getExpenseAmount() + " " + expenseFromList.getExpenseCurrency());
         }
 
-        return str;
+        return stringBuilder.toString();
     }
 }

@@ -13,6 +13,10 @@ public class Expense {
     @Column(name = "expenses_id", unique = true, nullable = false)
     private int expenseID;
 
+    @ManyToOne
+    @JoinColumn(name = "expenses_date_id")
+    private Date date;
+
     @Column(name = "expenses_amount", nullable = false)
     private BigDecimal expenseAmount;
 
@@ -22,10 +26,6 @@ public class Expense {
 
     @Column(name = "expenses_description", nullable = false)
     private String expenseDescription;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "expenses_date_id")
-    private Date date;
 
     @Override
     public boolean equals(Object o) {
