@@ -1,6 +1,5 @@
 package com.intelliarts.test_app.controller.command;
 
-import com.intelliarts.test_app.controller.exceptions.IncorrectCommandInputException;
 import com.intelliarts.test_app.entity.CurrencyType;
 
 import java.util.regex.Matcher;
