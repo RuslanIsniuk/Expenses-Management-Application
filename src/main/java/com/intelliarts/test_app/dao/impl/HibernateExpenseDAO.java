@@ -1,6 +1,6 @@
 package com.intelliarts.test_app.dao.impl;
 
-import com.intelliarts.test_app.DBdata.ConnectionUtil;
+import com.intelliarts.test_app.dbdata.ConnectionUtil;
 import com.intelliarts.test_app.dao.ExpenseDAO;
 import com.intelliarts.test_app.entity.Expense;
 import org.apache.log4j.Logger;
@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.exception.SQLGrammarException;
 import org.hibernate.query.Query;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,13 +44,13 @@ public class HibernateExpenseDAO implements ExpenseDAO {
     @Override
     public List<Expense> readAll() {
         List<Expense> expenseList = new ArrayList<>();
-        Transaction transaction;
+        Transaction transaction = null;
         Session session = factory.getCurrentSession();
 
         try {
             transaction = session.getTransaction();
             transaction.begin();
-            String sqlQuery = "from " + Expense.class.getName();
+            String sqlQuery = "FROM " + Expense.class.getName();
             Query<Expense> query = (Query<Expense>) session.createQuery(sqlQuery);
             expenseList = query.getResultList();
         } catch (SQLGrammarException sge) {
