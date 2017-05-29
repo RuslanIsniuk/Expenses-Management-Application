@@ -6,17 +6,24 @@ import org.apache.log4j.Logger;
 
 public class ClearCommand extends Command {
     private static final Logger logger = Logger.getLogger(ClearCommand.class);
-    private final static String COMMAND_PARSER = "[c][l][e][a][r]\\s[12]\\d{3}[-](([0][1-9])||([1][0-2]))[-](([0][1-9])||([12][0-9])||([3][01]))";
+    private static final String COMMAND_PARSER = "[c][l][e][a][r]\\s[12]\\d{3}[-](([0][1-9])||([1][0-2]))[-](([0][1-9])||([12][0-9])||([3][01]))";
+    private static final String ERROR_MESSAGE = "Command not found!\nPerhaps you wanted to say \"clear yyyy-mm-dd\" ?";
+    private String[] userInput;
 
     @Override
     public void execute(String enteredCommand) {
         try {
             if (!checkCommand(enteredCommand, COMMAND_PARSER)) {
-                throw new IncorrectCommandInputException("Command not found!\nPerhaps you wanted to say \"clear yyyy-mm-dd\" ?");
+                throw new IncorrectCommandInputException(ERROR_MESSAGE);
             }
             //add service method
         } catch (IncorrectCommandInputException ie) {
             logger.info(ie);
         }
+    }
+
+    @Override
+    public String[] getDataStrFromUserInput(String enteredCommand) {
+        return enteredCommand.split("\\s", 2);
     }
 }
