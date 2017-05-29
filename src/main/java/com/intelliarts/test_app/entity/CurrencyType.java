@@ -42,5 +42,14 @@ public enum CurrencyType {
         return abbreviation;
     }
 
+    public static CurrencyType getCurrencyType(String abbreviation){
+        for (CurrencyType ct: CurrencyType.values()) {
+            if(abbreviation.equals(ct.getAbbreviation())){
+                return ct;
+            }
+        }
+        return null;
+    }
+
     private String abbreviation;
 }
