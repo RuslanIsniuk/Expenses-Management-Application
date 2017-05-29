@@ -2,16 +2,20 @@ package com.intelliarts.test_app.controller.command.impl;
 
 import com.intelliarts.test_app.controller.command.Command;
 import com.intelliarts.test_app.controller.exceptions.IncorrectCommandInputException;
+import com.intelliarts.test_app.model.services.TotalExpenses;
 import org.apache.log4j.Logger;
 
 public class TotalCommand extends Command {
     private static final Logger logger = Logger.getLogger(TotalCommand.class);
     private static final String COMMAND_PARSER = "[t][o][t][a][l]\\s[A-Z]{3}";
     private static final String ERROR_MESSAGE = "Command not found!\nPerhaps you wanted to say \"total CUR\" ?";
-    private String[] userInput;
+
+    private TotalExpenses totalExpenses = new TotalExpenses();
 
     @Override
     public void execute(String enteredCommand) {
+        String[] userInput;
+
         try {
             if (!checkCommand(enteredCommand, COMMAND_PARSER)) {
                 throw new IncorrectCommandInputException(ERROR_MESSAGE);
@@ -22,9 +26,11 @@ public class TotalCommand extends Command {
             if (isCurrencyTypeIncorrect(userInput[1])) {
                 throw new IncorrectCommandInputException(ERROR_MESSAGE);
             }
-            //add service method
+
+            totalExpenses.execute(userInput[1]);
         } catch (IncorrectCommandInputException ie) {
             logger.info(ie);
+            System.out.println(ERROR_MESSAGE);
         }
     }
 
