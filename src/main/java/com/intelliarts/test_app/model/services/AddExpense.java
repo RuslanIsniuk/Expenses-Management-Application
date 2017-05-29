@@ -1,14 +1,35 @@
 package com.intelliarts.test_app.model.services;
 
-import com.intelliarts.test_app.dao.ExpenseDAO;
-import com.intelliarts.test_app.dao.impl.HibernateExpenseDAO;
+import com.intelliarts.test_app.dao.DateDAO;
+import com.intelliarts.test_app.dao.impl.HibernateDateDAO;
+import com.intelliarts.test_app.entity.Date;
 import com.intelliarts.test_app.entity.Expense;
 
-public class AddExpense {
-    private ExpenseDAO expenseDAO = new HibernateExpenseDAO();
+import java.util.Set;
 
-    public void insertNewExpense(Expense newExpense){
-        expenseDAO.insert(newExpense);
-        System.out.println("Entry has been added successfully.");
+public class AddExpense {
+    private DateDAO dateDAO = new HibernateDateDAO();
+    private Date date;
+
+    public void execute(Date dateFromUser) {
+        if (isDateAlreadyExistInDataBase(dateFromUser.getDate())) {
+            Set<Expense> expenseSetFromUser = dateFromUser.getExpenseSet();
+            date.getExpenseSet().addAll(expenseSetFromUser);
+            dateDAO.update(date);
+            System.out.println(date.toString());
+        } else {
+            dateDAO.insert(dateFromUser);
+            System.out.println(dateFromUser.toString());
+        }
+    }
+
+    private boolean isDateAlreadyExistInDataBase(java.sql.Date dateField) {
+        date = dateDAO.readUsingDate(dateField);
+
+        if (date == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
