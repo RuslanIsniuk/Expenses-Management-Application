@@ -12,6 +12,13 @@ public class ClearCommand extends Command {
 
     private ClearExpenses clearExpenses = new ClearExpenses();
 
+    public ClearCommand() {
+    }
+
+    public ClearCommand(ClearExpenses clearExpenses) {
+        this.clearExpenses = clearExpenses;
+    }
+
     @Override
     public void execute(String enteredCommand) {
         String[] userInput = getDataStrFromUserInput(enteredCommand);

@@ -12,6 +12,13 @@ public class ListCommand extends Command {
 
     private GetListSortedByDate getListSortedByDate = new GetListSortedByDate();
 
+    public ListCommand() {
+    }
+
+    public ListCommand(GetListSortedByDate getListSortedByDate) {
+        this.getListSortedByDate = getListSortedByDate;
+    }
+
     @Override
     public void execute(String enteredCommand) {
         try {

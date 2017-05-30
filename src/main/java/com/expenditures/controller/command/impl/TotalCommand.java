@@ -12,6 +12,13 @@ public class TotalCommand extends Command {
 
     private TotalExpenses totalExpenses = new TotalExpenses();
 
+    public TotalCommand() {
+    }
+
+    public TotalCommand(TotalExpenses totalExpenses) {
+        this.totalExpenses = totalExpenses;
+    }
+
     @Override
     public void execute(String enteredCommand) {
         String[] userInput;

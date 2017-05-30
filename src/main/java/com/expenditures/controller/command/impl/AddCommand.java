@@ -19,6 +19,13 @@ public class AddCommand extends Command {
 
     private AddExpense addExpense = new AddExpense();
 
+    public AddCommand() {
+    }
+
+    public AddCommand(AddExpense addExpense) {
+        this.addExpense = addExpense;
+    }
+
     @Override
     public void execute(String enteredCommand) {
         String[] userInput;
