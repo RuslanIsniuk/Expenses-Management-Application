@@ -45,11 +45,8 @@ public class ClearExpenses {
         Date dateFromUser = null;
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         try {
-
             java.util.Date utilDate = formatter.parse(dateStrFromUser);
-            java.sql.Date mySQLDate = new java.sql.Date(utilDate.getTime());
-
-            dateFromUser = mySQLDate;
+            dateFromUser = new Date(utilDate.getTime());
         } catch (ParseException e) {
             logger.error(e);
         }

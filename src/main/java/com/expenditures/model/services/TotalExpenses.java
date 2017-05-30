@@ -38,7 +38,7 @@ public class TotalExpenses {
         List<Date> dateList = dateDAO.readAll();
 
         try {
-            if (dateList.size() == 0) {
+            if (dateList.isEmpty()) {
                 throw new NoDatesFoundException(ERROR_MESSAGE);
             }
 

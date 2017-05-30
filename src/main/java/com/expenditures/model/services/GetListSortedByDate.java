@@ -25,7 +25,7 @@ public class GetListSortedByDate {
     public void execute() {
         List<Date> dateList = dateDAO.readAll();
         try {
-            if (dateList.size() == 0) {
+            if (dateList.isEmpty()) {
                 throw new NoDatesFoundException(ERROR_MESSAGE);
             }
             dateList.sort(dateComparator);

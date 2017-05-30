@@ -17,13 +17,13 @@ public abstract class Command {
     }
 
     protected boolean isCurrencyTypeIncorrect(String currencyStr) {
-        boolean typeCorrect = true;
+        boolean typeIncorrect = true;
 
         for (CurrencyType ct : CurrencyType.values()) {
             if (ct.getAbbreviation().equals(currencyStr)) {
-                typeCorrect = false;
+                typeIncorrect = false;
             }
         }
-        return typeCorrect;
+        return typeIncorrect;
     }
 }

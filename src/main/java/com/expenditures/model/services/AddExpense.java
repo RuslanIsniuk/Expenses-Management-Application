@@ -32,11 +32,6 @@ public class AddExpense {
 
     private boolean isDateAlreadyExistInDataBase(java.sql.Date dateField) {
         date = dateDAO.readUsingDate(dateField);
-
-        if (date == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return date!=null;
     }
 }

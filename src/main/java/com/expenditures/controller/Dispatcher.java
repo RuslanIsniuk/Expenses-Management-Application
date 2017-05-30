@@ -51,6 +51,8 @@ public class Dispatcher {
                 case "hel":
                     helpCommand.execute(enteredCommand);
                     break;
+                case "exi":
+                    break;
                 default:
                     throw new CommandNotFoundException(ERROR_MESSAGE);
             }
