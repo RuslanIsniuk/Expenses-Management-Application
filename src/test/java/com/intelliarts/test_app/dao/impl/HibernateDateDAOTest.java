@@ -1,6 +1,7 @@
 package com.intelliarts.test_app.dao.impl;
 
 import com.intelliarts.test_app.dao.DateDAO;
+import com.intelliarts.test_app.dao.impl.HibernateDateDAO;
 import com.intelliarts.test_app.entity.Date;
 import org.junit.After;
 import org.junit.Before;

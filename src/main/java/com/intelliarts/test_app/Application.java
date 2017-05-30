@@ -10,7 +10,7 @@ public class Application {
         Dispatcher dispatcher = new Dispatcher();
         String userInput = "";
         while(!userInput.equals("exit")){
-            System.out.println("Enter command: ");
+            System.out.println("\nEnter command: ");
             userInput = commandReader.nextLine();
             dispatcher.commandIdentification(userInput.trim());
         }

@@ -2,6 +2,8 @@ package com.intelliarts.test_app.dao.impl;
 
 import com.intelliarts.test_app.dao.ExpenseDAO;
 import com.intelliarts.test_app.dao.DateDAO;
+import com.intelliarts.test_app.dao.impl.HibernateDateDAO;
+import com.intelliarts.test_app.dao.impl.HibernateExpenseDAO;
 import com.intelliarts.test_app.entity.Date;
 import com.intelliarts.test_app.entity.Expense;
 import org.junit.After;
