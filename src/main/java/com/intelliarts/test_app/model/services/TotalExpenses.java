@@ -26,6 +26,14 @@ public class TotalExpenses {
     private ExchangeRates exchangeRates;
     private BigDecimal totalAmount = new BigDecimal("0.00");
 
+    public TotalExpenses() {
+    }
+
+    public TotalExpenses(DateDAO dateDAO,BigDecimal totalAmount) {
+        this.dateDAO = dateDAO;
+        this.totalAmount = totalAmount;
+    }
+
     public void execute(String currencyTypeStr) {
         exchangeRates = getExchangeRates(currencyTypeStr);
         List<Date> dateList = dateDAO.readAll();

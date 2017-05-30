@@ -17,6 +17,12 @@ public class ClearExpenses {
 
     private DateDAO dateDAO = new HibernateDateDAO();
 
+    public ClearExpenses(){}
+
+    public ClearExpenses(DateDAO dateDAO) {
+        this.dateDAO = dateDAO;
+    }
+
     public void execute(String dateStrFromUser) {
         Date date = convertToDateObj(dateStrFromUser);
 

@@ -5,11 +5,17 @@ import com.intelliarts.test_app.dao.impl.HibernateDateDAO;
 import com.intelliarts.test_app.entity.Date;
 import com.intelliarts.test_app.entity.Expense;
 
-import java.util.Set;
-
 public class AddExpense {
     private DateDAO dateDAO = new HibernateDateDAO();
     private Date date;
+
+    public AddExpense(){
+    }
+
+    public AddExpense(DateDAO dateDAO, Date date) {
+        this.dateDAO = dateDAO;
+        this.date = date;
+    }
 
     public void execute(Date dateFromUser) {
         if (isDateAlreadyExistInDataBase(dateFromUser.getDate())) {

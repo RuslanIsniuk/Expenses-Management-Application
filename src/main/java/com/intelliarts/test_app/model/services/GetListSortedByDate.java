@@ -15,6 +15,13 @@ public class GetListSortedByDate {
     private DateDAO dateDAO = new HibernateDateDAO();
     private DateComparator dateComparator = new DateComparator();
 
+    public GetListSortedByDate() {
+    }
+
+    public GetListSortedByDate(DateDAO dateDAO) {
+        this.dateDAO = dateDAO;
+    }
+
     public void execute() {
         List<Date> dateList = dateDAO.readAll();
         try {
