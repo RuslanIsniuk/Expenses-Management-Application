@@ -9,6 +9,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
@@ -30,21 +31,18 @@ public class AddCommandTest {
     @Test
     public void executeDefault(){
         addCommand.execute(DEFAULT_COMMAND);
-        ArgumentCaptor<Date> argument = ArgumentCaptor.forClass(Date.class);
-        verify(addExpense).execute(argument.capture());
+        verify(addExpense).execute(any(Date.class));
     }
 
     @Test
     public void executeThrowIncorrectCommandInputException(){
         addCommand.execute(WRONG_COMMAND);
-        ArgumentCaptor<Date> argument = ArgumentCaptor.forClass(Date.class);
-        verify(addExpense,never()).execute(argument.capture());
+        verify(addExpense,never()).execute(any());
     }
 
     @Test
     public void executeWithWrongCurrencyType() {
         addCommand.execute(WRONG_CURRENCY_COMMAND);
-        ArgumentCaptor<Date> argument = ArgumentCaptor.forClass(Date.class);
-        verify(addExpense, never()).execute(argument.capture());
+        verify(addExpense, never()).execute(any());
     }
 }

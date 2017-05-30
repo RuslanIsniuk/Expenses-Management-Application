@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
@@ -42,46 +43,40 @@ public class DispatcherTest {
     @Test
     public void executeAddCommand(){
         dispatcher.commandIdentification(ADD_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(addCommand).execute(argument.capture());
+        verify(addCommand).execute(any());
     }
 
     @Test
     public void executeListCommand(){
         dispatcher.commandIdentification(LIS_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(listCommand).execute(argument.capture());
+        verify(listCommand).execute(any());
     }
 
     @Test
     public void executeClearCommand(){
         dispatcher.commandIdentification(CLARE_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(clearCommand).execute(argument.capture());
+        verify(clearCommand).execute(any());
     }
 
     @Test
     public void executeTotalCommand(){
         dispatcher.commandIdentification(TOTAL_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(totalCommand).execute(argument.capture());
+        verify(totalCommand).execute(any());
     }
 
     @Test
     public void executeHelpCommand(){
         dispatcher.commandIdentification(HELP_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(helpCommand).execute(argument.capture());
+        verify(helpCommand).execute(any());
     }
 
     @Test
     public void executeWrongCommand(){
         dispatcher.commandIdentification(WRONG_COMMAND);
-        ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
-        verify(addCommand,never()).execute(argument.capture());
-        verify(listCommand,never()).execute(argument.capture());
-        verify(clearCommand,never()).execute(argument.capture());
-        verify(totalCommand,never()).execute(argument.capture());
-        verify(helpCommand,never()).execute(argument.capture());
+        verify(addCommand,never()).execute(any());
+        verify(listCommand,never()).execute(any());
+        verify(clearCommand,never()).execute(any());
+        verify(totalCommand,never()).execute(any());
+        verify(helpCommand,never()).execute(any());
     }
 }

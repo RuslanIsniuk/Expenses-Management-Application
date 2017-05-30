@@ -28,11 +28,12 @@ public class AddExpenseTest {
     Date dateFromUser;
     @Mock
     Set<Expense> expenseSet;
+    @Mock
+    Iterator<Expense> mockIterator;
 
     @Before
     public void setUp() {
         addExpense = new AddExpense(dateDAO,date);
-        Iterator<Expense> mockIterator = mock(Iterator.class);
         when(dateFromUser.getDate()).thenReturn(new java.sql.Date(0));
         when(dateFromUser.getExpenseSet()).thenReturn(expenseSet);
         when(expenseSet.iterator()).thenReturn(mockIterator);
@@ -43,15 +44,13 @@ public class AddExpenseTest {
     public void executeDateAlreadyExist(){
         when(dateDAO.readUsingDate(any())).thenReturn(date);
         addExpense.execute(dateFromUser);
-        ArgumentCaptor<Date> argument = ArgumentCaptor.forClass(Date.class);
-        verify(dateDAO).update(argument.capture());
+        verify(dateDAO).update(any());
     }
 
     @Test
     public void executeDefault(){
         when(dateDAO.readUsingDate(any())).thenReturn(null);
         addExpense.execute(dateFromUser);
-        ArgumentCaptor<Date> argument = ArgumentCaptor.forClass(Date.class);
-        verify(dateDAO).insert(argument.capture());
+        verify(dateDAO).insert(any());
     }
 }

@@ -30,15 +30,13 @@ public class ClearExpensesTest {
     public void executeDefault(){
         when(dateDAO.readUsingDate(any())).thenReturn(date);
         clearExpenses.execute("2000-10-20");
-        ArgumentCaptor<java.sql.Date> argument = ArgumentCaptor.forClass(java.sql.Date.class);
-        verify(dateDAO).deleteUsingDate(argument.capture());
+        verify(dateDAO).deleteUsingDate(any());
     }
 
     @Test
     public void executeThrowNoDatesFoundException(){
         when(dateDAO.readUsingDate(any())).thenReturn(null);
         clearExpenses.execute("2000-10-20");
-        ArgumentCaptor<java.sql.Date> argument = ArgumentCaptor.forClass(java.sql.Date.class);
-        verify(dateDAO, never()).deleteUsingDate(argument.capture());
+        verify(dateDAO, never()).deleteUsingDate(any());
     }
 }

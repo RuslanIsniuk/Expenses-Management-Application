@@ -24,11 +24,12 @@ public class GetListSortedByDateTest {
     List<Date> dateList;
     @Mock
     Date date;
+    @Mock
+    Iterator<Date> mockIterator;
 
     @Before
     public void setUp() {
         getListSortedByDate = new GetListSortedByDate(dateDAO);
-        Iterator<Date> mockIterator = mock(Iterator.class);
         when(dateDAO.readAll()).thenReturn(dateList);
         when(dateList.iterator()).thenReturn(mockIterator);
         when(mockIterator.next()).thenReturn(date);
@@ -45,7 +46,7 @@ public class GetListSortedByDateTest {
 
     @Test
     public void executeThrowNoDatesFoundException(){
-        when(dateList.size()).thenReturn(0);
+        when(dateList.isEmpty()).thenReturn(true);
         getListSortedByDate.execute();
         ArgumentCaptor<DateComparator> argument = ArgumentCaptor.forClass(DateComparator.class);
         verify(dateList,never()).sort(argument.capture());
