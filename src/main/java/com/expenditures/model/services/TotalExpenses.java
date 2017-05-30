@@ -29,9 +29,8 @@ public class TotalExpenses {
     public TotalExpenses() {
     }
 
-    public TotalExpenses(DateDAO dateDAO,BigDecimal totalAmount) {
+    public TotalExpenses(DateDAO dateDAO) {
         this.dateDAO = dateDAO;
-        this.totalAmount = totalAmount;
     }
 
     public void execute(String currencyTypeStr) {
@@ -106,5 +105,9 @@ public class TotalExpenses {
                 reader.close();
         }
         return "";
+    }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
     }
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class);
     private static final String COMMAND_PARSER = "add\\s[12]\\d{3}[-](([0][1-9])|([1][0-2]))[-](([0][1-9])|([12][0-9])|([3][01]))\\s\\d+(\\.[\\d]{1,2})?\\s[A-Z]{3}\\s.{3,100}";
-    private static final String ERROR_MESSAGE = "Command not found!\nPerhaps you wanted to say \"add yyyy-mm-dd CUR description\" ?";
+    private static final String ERROR_MESSAGE = "Command not found!\nPerhaps you wanted to say \"add yyyy-mm-dd xxxx CUR description\" ?";
 
     private AddExpense addExpense = new AddExpense();
 

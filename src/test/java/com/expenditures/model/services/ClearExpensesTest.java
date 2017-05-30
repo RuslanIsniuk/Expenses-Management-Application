@@ -35,7 +35,7 @@ public class ClearExpensesTest {
     }
 
     @Test
-    public void executeWithNoDatesFoundException(){
+    public void executeThrowNoDatesFoundException(){
         when(dateDAO.readUsingDate(any())).thenReturn(null);
         clearExpenses.execute("2000-10-20");
         ArgumentCaptor<java.sql.Date> argument = ArgumentCaptor.forClass(java.sql.Date.class);

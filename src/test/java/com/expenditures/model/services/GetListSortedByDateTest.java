@@ -44,7 +44,7 @@ public class GetListSortedByDateTest {
     }
 
     @Test
-    public void executeWithNoDatesFoundException(){
+    public void executeThrowNoDatesFoundException(){
         when(dateList.size()).thenReturn(0);
         getListSortedByDate.execute();
         ArgumentCaptor<DateComparator> argument = ArgumentCaptor.forClass(DateComparator.class);
