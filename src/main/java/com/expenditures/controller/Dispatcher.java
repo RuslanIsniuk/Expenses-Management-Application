@@ -1,21 +1,30 @@
 package com.expenditures.controller;
 
 
-import com.expenditures.controller.command.impl.ClearCommand;
-import com.expenditures.controller.command.impl.ListCommand;
+import com.expenditures.controller.command.impl.*;
 import com.expenditures.controller.exceptions.CommandNotFoundException;
-import com.expenditures.controller.command.impl.AddCommand;
-import com.expenditures.controller.command.impl.TotalCommand;
 import org.apache.log4j.Logger;
 
 public class Dispatcher {
     private static final Logger logger = Logger.getLogger(Dispatcher.class);
-    private static final String ERROR_MESSAGE = "Error!Command not found!";
+    private static final String ERROR_MESSAGE = "Error!Command not found!\n Type \"help\" to get list of commands.";
 
     private AddCommand addCommand = new AddCommand();
     private ClearCommand clearCommand = new ClearCommand();
     private ListCommand listCommand = new ListCommand();
     private TotalCommand totalCommand = new TotalCommand();
+    private HelpCommand helpCommand = new HelpCommand();
+
+    public Dispatcher() {
+    }
+
+    public Dispatcher(AddCommand addCommand, ClearCommand clearCommand, ListCommand listCommand, TotalCommand totalCommand, HelpCommand helpCommand) {
+        this.addCommand = addCommand;
+        this.clearCommand = clearCommand;
+        this.listCommand = listCommand;
+        this.totalCommand = totalCommand;
+        this.helpCommand = helpCommand;
+    }
 
     public void commandIdentification(String enteredCommand) {
 
@@ -40,8 +49,7 @@ public class Dispatcher {
                     totalCommand.execute(enteredCommand);
                     break;
                 case "hel":
-                    break;
-                case "exi":
+                    helpCommand.execute(enteredCommand);
                     break;
                 default:
                     throw new CommandNotFoundException(ERROR_MESSAGE);
