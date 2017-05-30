@@ -23,9 +23,9 @@
         <property name="hibernate.c3p0.max_statements">50</property>
         <property name="hibernate.c3p0.idle_test_period">3000</property>
 
-        <mapping class="com.intelliarts.test_app.entity.CurrencyType"/>
-        <mapping class="com.intelliarts.test_app.entity.Date"/>
-        <mapping class="com.intelliarts.test_app.entity.Expense"/>
+        <mapping class="com.expenditures.entity.CurrencyType"/>
+        <mapping class="com.expenditures.entity.Date"/>
+        <mapping class="com.expenditures.entity.Expense"/>
 
     </session-factory>
 </hibernate-configuration>
